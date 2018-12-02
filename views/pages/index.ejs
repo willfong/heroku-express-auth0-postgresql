@@ -8,6 +8,11 @@
     <h1>HEAP ToDo</h1>
     <p class="lead">HEAP (Heroku/Express/Auth0/PostgreSQL) To Do Test Application</p>
     <p>Message: <%= message %></p>
+    <ul>
+    <% results.forEach(function(r) { %>
+      <li><%= r.id %> - <%= r.name %></li>
+    <% }); %>
+    </ul>
   </div>
 
 </main>

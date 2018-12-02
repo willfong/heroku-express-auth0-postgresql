@@ -5,6 +5,11 @@ var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+const { Pool } = require('pg');
+const dbPool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
 
 
 var authRouter = require('./routes/auth');
@@ -67,6 +72,12 @@ var userInViews = function () {
   };
 };
 
+var dbInViews = function () {
+  return function (req, res, next) {
+    res.locals.dbPool = dbPool;
+    next();
+  };
+};
 
 express()
   .use(express.static(path.join(__dirname, 'public')))
@@ -77,6 +88,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .use(userInViews())
+  .use(dbInViews())
   .use('/', authRouter)
   .use('/', indexRouter)
   .use('/', appRouter)
