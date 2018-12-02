@@ -5,9 +5,24 @@
 <main role="main" class="container">
 
   <div class="starter-template">
-    <h1>APP MAIN</h1>
+    <h1>Things you have to do...</h1>
+    <div class="list-group">
+        <% results.forEach(function(r) { %>
+        <a href="<%= r.id %>" class="list-group-item list-group-item-action"><%= r.name %></a>
+        <% }); %>
+        <a class="list-group-item list-group-item-action">
+          <form id="formAddNewTodo" class="form-inline" action="/app/add" method="post">
+            <label class="sr-only" for="inlineFormInputName2">Name</label>
+            <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="name" placeholder="Go to the gym...">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          </form>
+        </a>
+    </div>
   </div>
 
 </main>
+
+<% include ../partials/scripts.ejs %>
+<script src="/app.js"></script>
 
 <% include ../partials/footer.ejs %>

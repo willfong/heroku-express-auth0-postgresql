@@ -4,6 +4,7 @@ var dotenv = require('dotenv');
 var passport = require('passport');
 var Auth0Strategy = require('passport-auth0');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
 var session = require('express-session');
 const { Pool } = require('pg');
 const dbPool = new Pool({
@@ -82,6 +83,8 @@ var dbInViews = function () {
 express()
   .use(express.static(path.join(__dirname, 'public')))
   .use(cookieParser())
+  .use(bodyParser.json())
+  .use(bodyParser.urlencoded({ extended: true }))
   .use(session(sess))
   .use(passport.initialize())
   .use(passport.session())

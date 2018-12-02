@@ -18,3 +18,7 @@ AUTH0_CALLBACK_URL=http://localhost:5000/auth/callback
 ```
 heroku addons:create heroku-postgresql:hobby-dev
 ```
+
+```
+heroku config:get DATABASE_URL -s >> .env
+```
