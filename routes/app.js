@@ -27,7 +27,6 @@ router.get('/app', secured(), async (req, res, next) => {
 router.post('/app/add', secured(), async (req, res, next) => {
   try {
     const client = await res.locals.dbPool.connect();
-    console.log(req.body);
     const insert = await client.query('INSERT INTO todos (userid, name) VALUES ($1, $2)', [res.locals.user.id, req.body.name]);
     res.redirect('/app');
   } catch (err) {
