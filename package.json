@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "node test.js"
+    "test": "node test.js",
+    "initdb": "heroku pg:psql -f schema.sql"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
