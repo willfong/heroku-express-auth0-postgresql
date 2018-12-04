@@ -95,4 +95,9 @@ express()
   .use('/', authRouter)
   .use('/', indexRouter)
   .use('/', appRouter)
+  .use(function(req, res, next){
+    // This catches anything that didn't match above
+    res.status(404);
+    res.type('txt').send('Not found!');
+  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))

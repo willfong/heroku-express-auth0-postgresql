@@ -3,21 +3,20 @@
 <link href="/stylesheets/index.css" rel="stylesheet">
 
 <main role="main" class="container">
-
   <div class="starter-template">
     <h1>Things you have to do...</h1>
-    <div class="list-group">
-        <% results.forEach(function(r) { %>
-        <a href="<%= r.id %>" class="list-group-item list-group-item-action"><%= r.name %></a>
-        <% }); %>
-        <a class="list-group-item list-group-item-action">
-          <form id="formAddNewTodo" class="form-inline" action="/app/add" method="post">
-            <label class="sr-only" for="inlineFormInputName2">Name</label>
-            <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" name="name" placeholder="Go to the gym...">
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-          </form>
-        </a>
-    </div>
+    <ul class="list-group list-group-flush">
+      <% results.forEach(function(r) { %>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><%= r.name %> <a class="btn btn-outline-warning" href="/app/<%= r.id %>/completed" role="button">Done!</a></li>
+      <% }); %>
+      <li class="list-group-item">
+        <form id="formAddNewTodo" class="form-inline" action="/app/add" method="post">
+          <label class="sr-only" for="inlineFormInputName2">Name</label>
+          <input type="text" class="form-control input mb-2 mr-sm-2" id="inlineFormInputName2" name="name" placeholder="Go to the gym...">
+          <button type="submit" class="btn btn-outline-primary mb-2">Submit</button>
+        </form>
+      </li>
+    </ul>
   </div>
 
 </main>
